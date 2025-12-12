@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* DevConnect Design System - Premium developer social platform */
+
+@layer base {
+  :root {
+    /* Sophisticated Modern Theme */
+    --background: 210 40% 98%; /* #F8FAFC */
+    --foreground: 215 25% 12%; /* #1E293B */
+    
+    --card: 0 0% 100%; /* #FFFFFF */
+    --card-foreground: 215 25% 12%;
+    
+    --panel: 210 40% 98%;
+    --panel-foreground: 215 25% 12%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 12%;
+    
+    --primary: 215 25% 12%; /* #0F172A */
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 210 40% 98%;
+    --secondary-foreground: 215 25% 12%;
+    
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 20% 39%; /* #64748B */
+    
+    --accent: 199 89% 48%; /* #38BDF8 */
+    --accent-foreground: 0 0% 100%;
+    
+    --success: 142 76% 36%; /* #22C55E */
+    --success-foreground: 0 0% 100%;
+    
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    
+    --destructive: 0 84% 60%; /* #EF4444 */
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 214 32% 91%; /* #E2E8F0 */
+    --input: 214 32% 91%;
+    --ring: 199 89% 48%;
+    
+    --radius: 0.75rem;
+    
+    /* Custom gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(215 25% 12%), hsl(199 89% 48%));
+    --gradient-hero: linear-gradient(135deg, hsl(210 40% 98%), hsl(0 0% 100%));
+    --gradient-accent: linear-gradient(135deg, hsl(199 89% 48%), hsl(215 25% 12%));
+    
+    /* Animation easing */
+    --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    
+    /* Shadows */
+    --shadow-soft: 0 1px 3px 0 hsl(215 25% 12% / 0.1), 0 1px 2px 0 hsl(215 25% 12% / 0.06);
+    --shadow-medium: 0 4px 6px -1px hsl(215 25% 12% / 0.1), 0 2px 4px -1px hsl(215 25% 12% / 0.06);
+    --shadow-strong: 0 10px 15px -3px hsl(215 25% 12% / 0.1), 0 4px 6px -2px hsl(215 25% 12% / 0.05);
+  }
+
+  .dark {
+    /* Sophisticated Dark Theme */
+    --background: 215 25% 12%; /* #0F172A */
+    --foreground: 210 40% 98%; /* #F8FAFC */
+    
+    --card: 215 25% 12%;
+    --card-foreground: 210 40% 98%;
+    
+    --panel: 215 25% 12%;
+    --panel-foreground: 210 40% 98%;
+    
+    --popover: 215 25% 12%;
+    --popover-foreground: 210 40% 98%;
+    
+    --primary: 199 89% 48%; /* #38BDF8 */
+    --primary-foreground: 215 25% 12%;
+    
+    --secondary: 215 25% 12%;
+    --secondary-foreground: 210 40% 98%;
+    
+    --muted: 215 25% 12%;
+    --muted-foreground: 215 20% 39%;
+    
+    --accent: 199 89% 48%;
+    --accent-foreground: 215 25% 12%;
+    
+    --success: 142 76% 36%;
+    --success-foreground: 215 25% 12%;
+    
+    --warning: 38 92% 50%;
+    --warning-foreground: 215 25% 12%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 215 25% 12%;
+    
+    --border: 215 25% 12%;
+    --input: 215 25% 12%;
+    --ring: 199 89% 48%;
+    
+    /* Dark gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(199 89% 48%), hsl(215 25% 12%));
+    --gradient-hero: linear-gradient(135deg, hsl(215 25% 12%), hsl(215 25% 12%));
+    --gradient-accent: linear-gradient(135deg, hsl(199 89% 48%), hsl(215 25% 12%));
+    
+    /* Dark shadows */
+    --shadow-soft: 0 1px 3px 0 hsl(0 0% 0% / 0.2), 0 1px 2px 0 hsl(0 0% 0% / 0.1);
+    --shadow-medium: 0 4px 6px -1px hsl(0 0% 0% / 0.3), 0 2px 4px -1px hsl(0 0% 0% / 0.2);
+    --shadow-strong: 0 10px 15px -3px hsl(0 0% 0% / 0.4), 0 4px 6px -2px hsl(0 0% 0% / 0.3);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+
+  h1 {
+    @apply text-3xl lg:text-4xl;
+  }
+
+  h2 {
+    @apply text-2xl lg:text-3xl;
+  }
+
+  h3 {
+    @apply text-xl lg:text-2xl;
+  }
+
+  h4 {
+    @apply text-lg lg:text-xl;
+  }
+
+  h5 {
+    @apply text-base lg:text-lg;
+  }
+
+  h6 {
+    @apply text-sm lg:text-base;
+  }
+
+  p {
+    @apply leading-relaxed;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground;
+  }
+}

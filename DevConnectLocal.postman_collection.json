@@ -1,0 +1,4747 @@
+{
+	"info": {
+		"_postman_id": "5eabcc5a-9779-4268-a869-2591bc033ae6",
+		"name": "DevConnectLocal",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40751302"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"praj1\",\r\n    \"email\": \"praj1@gmail.com\",\r\n    \"password\": \"123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Praj1",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"praj1\",\r\n    \"email\": \"praj1@gmail.com\",\r\n    \"password\": \"123456789\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/auth/register",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "250"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"fa-v2YcjdwKieI1TDkfns7LSAbsNH8\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 16 Sep 2025 13:57:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"msg\": \"User registered successfully\",\n    \"user\": {\n        \"username\": \"praj1\",\n        \"email\": \"praj1@gmail.com\",\n        \"passwordHash\": \"$2b$10$nfImi8.lpSrfAzLiHNisROULMZgpTvuoiJTXWONY4X32TFS8NsD9W\",\n        \"_id\": \"68c96cd58c6f7785b91c6309\",\n        \"createdAt\": \"2025-09-16T13:57:41.443Z\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let data = pm.response.json();\r",
+									"if (data.token) {\r",
+									"    pm.environment.set(\"authToken\", data.token);\r",
+									"    console.log(\"JWT token saved:\", data.token);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"praj1@gmail.com\",\r\n    \"password\": \"123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Praj1",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"praj1@gmail.com\",\r\n    \"password\": \"123456789\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/auth/login",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "395"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"18b-aosN0Dsgrop1uS3tryoUwQi/d4c\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 16 Sep 2025 13:58:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Yzk2Y2Q1OGM2Zjc3ODViOTFjNjMwOSIsImlhdCI6MTc1ODAzMTExNSwiZXhwIjoxNzU4NjM1OTE1fQ.yKOE8LKyVNzBM-lnFCy5bao1bWo6NEs6CSl2uDeSqaw\",\n    \"user\": {\n        \"_id\": \"68c96cd58c6f7785b91c6309\",\n        \"username\": \"praj1\",\n        \"email\": \"praj1@gmail.com\",\n        \"passwordHash\": \"$2b$10$nfImi8.lpSrfAzLiHNisROULMZgpTvuoiJTXWONY4X32TFS8NsD9W\",\n        \"createdAt\": \"2025-09-16T13:57:41.443Z\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "getUser",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/68c96cd58c6f7785b91c6309",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"68c96cd58c6f7785b91c6309"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Praj1",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/users/68c96cd58c6f7785b91c6309",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"users",
+										"68c96cd58c6f7785b91c6309"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "286"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"11e-exVkpQwhzvmRvUuq4P9qh1+2+eE\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Sep 2025 12:49:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"68c96cd58c6f7785b91c6309\",\n    \"username\": \"praj1\",\n    \"email\": \"praj1@gmail.com\",\n    \"createdAt\": \"2025-09-16T13:57:41.443Z\",\n    \"__v\": 0,\n    \"bio\": \"Full Stack Web3 Developer \",\n    \"githubUrl\": \"https://github.com/prajwal\",\n    \"portfolioUrl\": \"https://prajwal.dev\",\n    \"profilePicUrl\": \"https://mycdn.com/avatar.png\"\n}"
+						}
+					]
+				},
+				{
+					"name": "profileUpdate",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"bio\": \"Full Stack Web3 Developer \",\r\n  \"githubUrl\": \"https://github.com/prajwal\",\r\n  \"portfolioUrl\": \"https://prajwal.dev\",\r\n  \"profilePicUrl\": \"https://mycdn.com/avatar.png\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/update",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"update"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Praj1",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"bio\": \"Full Stack Web3 Developer \",\r\n  \"githubUrl\": \"https://github.com/prajwal\",\r\n  \"portfolioUrl\": \"https://prajwal.dev\",\r\n  \"profilePicUrl\": \"https://mycdn.com/avatar.png\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/users/update",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"users",
+										"update"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "286"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"11e-exVkpQwhzvmRvUuq4P9qh1+2+eE\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Sep 2025 12:50:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"68c96cd58c6f7785b91c6309\",\n    \"username\": \"praj1\",\n    \"email\": \"praj1@gmail.com\",\n    \"createdAt\": \"2025-09-16T13:57:41.443Z\",\n    \"__v\": 0,\n    \"bio\": \"Full Stack Web3 Developer \",\n    \"githubUrl\": \"https://github.com/prajwal\",\n    \"portfolioUrl\": \"https://prajwal.dev\",\n    \"profilePicUrl\": \"https://mycdn.com/avatar.png\"\n}"
+						}
+					]
+				},
+				{
+					"name": "followPraj",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/68c95cda710d3040401f74f9/follow",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"68c95cda710d3040401f74f9",
+								"follow"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "PrajFollow",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/users/68c95cda710d3040401f74f9/follow",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"users",
+										"68c95cda710d3040401f74f9",
+										"follow"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "36"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"24-8Jt98cycrz9KJYf6UZYOKfZIJ84\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Sep 2025 12:53:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"msg\": \"User followed successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "unfollow",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/68c95cda710d3040401f74f9/unfollow",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"68c95cda710d3040401f74f9",
+								"unfollow"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "unfollowPraj",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/users/68c95cda710d3040401f74f9/unfollow",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"users",
+										"68c95cda710d3040401f74f9",
+										"unfollow"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26-uSS5RAeZv66KsbzC3Pk4kPz87Ig\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Sep 2025 12:55:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"msg\": \"User unfollowed successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "getFollowers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/68c95cda710d3040401f74f9/followers",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"68c95cda710d3040401f74f9",
+								"followers"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getFollowers",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/users/68c95cda710d3040401f74f9/followers",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"users",
+										"68c95cda710d3040401f74f9",
+										"followers"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "102"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"66-pptJgYaXtkiaKsoZrOcCj+56BVE\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Sep 2025 13:03:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"68c96cd58c6f7785b91c6309\",\n        \"username\": \"praj1\",\n        \"profilePicUrl\": \"https://mycdn.com/avatar.png\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "getFollowing",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/68c96cd58c6f7785b91c6309/following",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"68c96cd58c6f7785b91c6309",
+								"following"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getFollowing",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/users/68c96cd58c6f7785b91c6309/following",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"users",
+										"68c96cd58c6f7785b91c6309",
+										"following"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"36-kecKmbkJnRft3t1M6W5EQua9Ris\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Sep 2025 13:06:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"68c95cda710d3040401f74f9\",\n        \"username\": \"praj\"\n    }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Post",
+			"item": [
+				{
+					"name": "createPost",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"content\": \"This is my second post \",\r\n  \"imageUrl\": \"https://example.com/myphoto.jpg\",\r\n  \"tags\": [\"firstpost\", \"intro\"]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/posts/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"posts",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"content\": \"This is my first post \",\r\n  \"imageUrl\": \"https://example.com/myphoto.jpg\",\r\n  \"tags\": [\"firstpost intro\"]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/posts/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"posts",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "258"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"102-rwRh2tWkq9tp/UM7w9qcCUeTdEY\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Sep 2025 14:34:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"userId\": \"68c96cd58c6f7785b91c6309\",\n    \"content\": \"This is my first post \",\n    \"imageUrl\": \"https://example.com/myphoto.jpg\",\n    \"likes\": [],\n    \"comments\": [],\n    \"tags\": [\n        \"68cac6f5e6f6e40f24af5644\"\n    ],\n    \"_id\": \"68cac6f5be571541b6e43211\",\n    \"createdAt\": \"2025-09-17T14:34:29.397Z\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "getPosts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/posts/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"posts",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getPost",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/posts/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"posts",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "375"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"177-N/bHlUbTLRk/DWvLiaYYg5LvikU\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Sep 2025 14:35:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"68cac6f5be571541b6e43211\",\n        \"userId\": {\n            \"_id\": \"68c96cd58c6f7785b91c6309\",\n            \"username\": \"praj1\",\n            \"profilePicUrl\": \"https://mycdn.com/avatar.png\"\n        },\n        \"content\": \"This is my first post \",\n        \"imageUrl\": \"https://example.com/myphoto.jpg\",\n        \"likes\": [],\n        \"comments\": [],\n        \"tags\": [\n            {\n                \"_id\": \"68cac6f5e6f6e40f24af5644\",\n                \"name\": \"firstpost intro\",\n                \"__v\": 0\n            }\n        ],\n        \"createdAt\": \"2025-09-17T14:34:29.397Z\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "getUserPosts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/posts/user/68c96cd58c6f7785b91c6309",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"posts",
+								"user",
+								"68c96cd58c6f7785b91c6309"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Praj1",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/posts/user/68c96cd58c6f7785b91c6309",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"posts",
+										"user",
+										"68c96cd58c6f7785b91c6309"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "375"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"177-N/bHlUbTLRk/DWvLiaYYg5LvikU\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Sep 2025 14:36:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"68cac6f5be571541b6e43211\",\n        \"userId\": {\n            \"_id\": \"68c96cd58c6f7785b91c6309\",\n            \"username\": \"praj1\",\n            \"profilePicUrl\": \"https://mycdn.com/avatar.png\"\n        },\n        \"content\": \"This is my first post \",\n        \"imageUrl\": \"https://example.com/myphoto.jpg\",\n        \"likes\": [],\n        \"comments\": [],\n        \"tags\": [\n            {\n                \"_id\": \"68cac6f5e6f6e40f24af5644\",\n                \"name\": \"firstpost intro\",\n                \"__v\": 0\n            }\n        ],\n        \"createdAt\": \"2025-09-17T14:34:29.397Z\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "getPostById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/posts/68cac6f5be571541b6e43211",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"posts",
+								"68cac6f5be571541b6e43211"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "post1",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/posts/68cac6f5be571541b6e43211",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"posts",
+										"68cac6f5be571541b6e43211"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "373"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"175-aWvcTtQzpNxaN4lZcrIxGyip3IU\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Sep 2025 14:37:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"68cac6f5be571541b6e43211\",\n    \"userId\": {\n        \"_id\": \"68c96cd58c6f7785b91c6309\",\n        \"username\": \"praj1\",\n        \"profilePicUrl\": \"https://mycdn.com/avatar.png\"\n    },\n    \"content\": \"This is my first post \",\n    \"imageUrl\": \"https://example.com/myphoto.jpg\",\n    \"likes\": [],\n    \"comments\": [],\n    \"tags\": [\n        {\n            \"_id\": \"68cac6f5e6f6e40f24af5644\",\n            \"name\": \"firstpost intro\",\n            \"__v\": 0\n        }\n    ],\n    \"createdAt\": \"2025-09-17T14:34:29.397Z\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "likePost",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/posts/68cac6f5be571541b6e43211/like",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"posts",
+								"68cac6f5be571541b6e43211",
+								"like"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "likepost",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/posts/68cac6f5be571541b6e43211/like",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"posts",
+										"68cac6f5be571541b6e43211",
+										"like"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "20"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"14-PDUd2JlVYYMOsyXh4KkFxerNvTo\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Sep 2025 14:38:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"msg\": \"Post liked\"\n}"
+						}
+					]
+				},
+				{
+					"name": "unlikePost",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/posts/68cac6f5be571541b6e43211/unlike",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"posts",
+								"68cac6f5be571541b6e43211",
+								"unlike"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/posts/68cac6f5be571541b6e43211/unlike",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"posts",
+										"68cac6f5be571541b6e43211",
+										"unlike"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "22"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"16-GB/B2T5bSzXQPxeNtmJzJ75TM5Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Sep 2025 14:39:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"msg\": \"Post unliked\"\n}"
+						}
+					]
+				},
+				{
+					"name": "deletePost",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/posts/68cadb3ffcdc4888d14b65f9",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"posts",
+								"68cadb3ffcdc4888d14b65f9"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/posts/68cac6f5be571541b6e43211",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"posts",
+										"68cac6f5be571541b6e43211"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "35"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"23-G1QwCTK1o5R/DBc8oFCpm6DU6hE\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Sep 2025 14:40:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"msg\": \"Post deleted successfully\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Project",
+			"item": [
+				{
+					"name": "createProject",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"DevConnect App\",\r\n  \"description\": \"A social network for developers\",\r\n  \"githubLink\": \"https://github.com/username/devconnect\",\r\n  \"imageUrl\": \"https://example.com/project.png\",\r\n  \"tags\": [\"Web3\", \"React\", \"Node.js\"]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/projects/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"projects",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "createProject",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"DevConnect App\",\r\n  \"description\": \"A social network for developers\",\r\n  \"githubLink\": \"https://github.com/username/devconnect\",\r\n  \"imageUrl\": \"https://example.com/project.png\",\r\n  \"tags\": [\"Web3\", \"React\", \"Node.js\"]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/projects/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"projects",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "379"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"17b-OOQV833l8HEK6ezIYLouJbvjXKQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Sep 2025 16:22:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"userId\": \"68c96cd58c6f7785b91c6309\",\n    \"title\": \"DevConnect App\",\n    \"description\": \"A social network for developers\",\n    \"githubLink\": \"https://github.com/username/devconnect\",\n    \"imageUrl\": \"https://example.com/project.png\",\n    \"tags\": [\n        \"68cae02ae6f6e40f24af5647\",\n        \"68cae02ae6f6e40f24af5649\",\n        \"68cae02ae6f6e40f24af5648\"\n    ],\n    \"_id\": \"68cae02a6f99f2e98b832477\",\n    \"createdAt\": \"2025-09-17T16:22:02.911Z\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "getProjects",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/projects/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"projects",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getProjects",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/projects/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"projects",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "549"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"225-5xLA7tz++gxICMnTl1RfnM0IBSw\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Sep 2025 16:22:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"68cae02a6f99f2e98b832477\",\n        \"userId\": {\n            \"_id\": \"68c96cd58c6f7785b91c6309\",\n            \"username\": \"praj1\",\n            \"profilePicUrl\": \"https://mycdn.com/avatar.png\"\n        },\n        \"title\": \"DevConnect App\",\n        \"description\": \"A social network for developers\",\n        \"githubLink\": \"https://github.com/username/devconnect\",\n        \"imageUrl\": \"https://example.com/project.png\",\n        \"tags\": [\n            {\n                \"_id\": \"68cae02ae6f6e40f24af5647\",\n                \"name\": \"Node.js\",\n                \"__v\": 0\n            },\n            {\n                \"_id\": \"68cae02ae6f6e40f24af5649\",\n                \"name\": \"React\",\n                \"__v\": 0\n            },\n            {\n                \"_id\": \"68cae02ae6f6e40f24af5648\",\n                \"name\": \"Web3\",\n                \"__v\": 0\n            }\n        ],\n        \"createdAt\": \"2025-09-17T16:22:02.911Z\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "getUserProjects",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/projects/user/68c96cd58c6f7785b91c6309",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"projects",
+								"user",
+								"68c96cd58c6f7785b91c6309"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getUserProjects",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/projects/user/68c96cd58c6f7785b91c6309",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"projects",
+										"user",
+										"68c96cd58c6f7785b91c6309"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "549"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"225-5xLA7tz++gxICMnTl1RfnM0IBSw\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Sep 2025 16:23:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"68cae02a6f99f2e98b832477\",\n        \"userId\": {\n            \"_id\": \"68c96cd58c6f7785b91c6309\",\n            \"username\": \"praj1\",\n            \"profilePicUrl\": \"https://mycdn.com/avatar.png\"\n        },\n        \"title\": \"DevConnect App\",\n        \"description\": \"A social network for developers\",\n        \"githubLink\": \"https://github.com/username/devconnect\",\n        \"imageUrl\": \"https://example.com/project.png\",\n        \"tags\": [\n            {\n                \"_id\": \"68cae02ae6f6e40f24af5647\",\n                \"name\": \"Node.js\",\n                \"__v\": 0\n            },\n            {\n                \"_id\": \"68cae02ae6f6e40f24af5649\",\n                \"name\": \"React\",\n                \"__v\": 0\n            },\n            {\n                \"_id\": \"68cae02ae6f6e40f24af5648\",\n                \"name\": \"Web3\",\n                \"__v\": 0\n            }\n        ],\n        \"createdAt\": \"2025-09-17T16:22:02.911Z\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "getProjectById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/projects/68cae02a6f99f2e98b832477",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"projects",
+								"68cae02a6f99f2e98b832477"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getProjectById",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/projects/68cae02a6f99f2e98b832477",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"projects",
+										"68cae02a6f99f2e98b832477"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "547"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"223-kmmfmEo8miZlYWKK1xzg16Xs3ko\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Sep 2025 16:28:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"68cae02a6f99f2e98b832477\",\n    \"userId\": {\n        \"_id\": \"68c96cd58c6f7785b91c6309\",\n        \"username\": \"praj1\",\n        \"profilePicUrl\": \"https://mycdn.com/avatar.png\"\n    },\n    \"title\": \"DevConnect App\",\n    \"description\": \"A social network for developers\",\n    \"githubLink\": \"https://github.com/username/devconnect\",\n    \"imageUrl\": \"https://example.com/project.png\",\n    \"tags\": [\n        {\n            \"_id\": \"68cae02ae6f6e40f24af5647\",\n            \"name\": \"Node.js\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"68cae02ae6f6e40f24af5649\",\n            \"name\": \"React\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"68cae02ae6f6e40f24af5648\",\n            \"name\": \"Web3\",\n            \"__v\": 0\n        }\n    ],\n    \"createdAt\": \"2025-09-17T16:22:02.911Z\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "updateProject",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Updated Project Title\",\r\n  \"description\": \"Updated description\",\r\n  \"githubLink\": \"https://github.com/username/updated-project\",\r\n  \"imageUrl\": \"https://example.com/new-image.png\",\r\n  \"tags\": [\"React\", \"Web3\"]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/projects/68cae02a6f99f2e98b832477",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"projects",
+								"68cae02a6f99f2e98b832477"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "updateProject",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"Updated Project Title\",\r\n  \"description\": \"Updated description\",\r\n  \"githubLink\": \"https://github.com/username/updated-project\",\r\n  \"imageUrl\": \"https://example.com/new-image.png\",\r\n  \"tags\": [\"React\", \"Web3\"]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/projects/68cae02a6f99f2e98b832477",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"projects",
+										"68cae02a6f99f2e98b832477"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "354"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"162-Ztk+rYSl7EWQm3DmfVYFyOJ2V5Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Sep 2025 16:34:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"68cae02a6f99f2e98b832477\",\n    \"userId\": \"68c96cd58c6f7785b91c6309\",\n    \"title\": \"Updated Project Title\",\n    \"description\": \"Updated description\",\n    \"githubLink\": \"https://github.com/username/updated-project\",\n    \"imageUrl\": \"https://example.com/new-image.png\",\n    \"tags\": [\n        \"68cae02ae6f6e40f24af5649\",\n        \"68cae02ae6f6e40f24af5648\"\n    ],\n    \"createdAt\": \"2025-09-17T16:22:02.911Z\",\n    \"__v\": 1\n}"
+						}
+					]
+				},
+				{
+					"name": "deleteProject",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/projects/68cae02a6f99f2e98b832477",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"projects",
+								"68cae02a6f99f2e98b832477"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "delete",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/projects/68cae02a6f99f2e98b832477",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"projects",
+										"68cae02a6f99f2e98b832477"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26-oGDC+xEBS/HcR2A1PXvrWE2PJFo\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Sep 2025 16:34:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"msg\": \"Project deleted successfully\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "comment",
+			"item": [
+				{
+					"name": "addComment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "// {\r\n//   \"postId\": \"68cadb91fcdc4888d14b6601\",\r\n//   \"text\": \"Nice post! 👏\"\r\n// }\r\n{\r\n    \"projectId\": \"68caf7c4bcb07bbfdddf9016\",\r\n    \"text\": \"Great project\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/comments",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"comments"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "addComment",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"postId\": \"68cadb91fcdc4888d14b6601\",\r\n  \"text\": \"Nice post! 👏\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/comments",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"comments"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "178"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b2-uG7fAegYkxFa8fbsZyK+qhJBMag\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Sep 2025 18:00:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"userId\": \"68c96cd58c6f7785b91c6309\",\n    \"postId\": \"68cadb91fcdc4888d14b6601\",\n    \"text\": \"Nice post! 👏\",\n    \"_id\": \"68caf740bcb07bbfdddf900d\",\n    \"createdAt\": \"2025-09-17T18:00:32.920Z\",\n    \"__v\": 0\n}"
+						},
+						{
+							"name": "project",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "// {\r\n//   \"postId\": \"68cadb91fcdc4888d14b6601\",\r\n//   \"text\": \"Nice post! 👏\"\r\n// }\r\n{\r\n    \"projectId\": \"68caf7c4bcb07bbfdddf9016\",\r\n    \"text\": \"Great project\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/comments",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"comments"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "179"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b3-hwEH551b6LwNgjTm5LOyxmiLYtE\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Sep 2025 18:04:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"userId\": \"68c96cd58c6f7785b91c6309\",\n    \"projectId\": \"68caf7c4bcb07bbfdddf9016\",\n    \"text\": \"Great project\",\n    \"_id\": \"68caf847bcb07bbfdddf901c\",\n    \"createdAt\": \"2025-09-17T18:04:55.737Z\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "getCommentsForPost",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/comments/post/68cadb91fcdc4888d14b6601",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"comments",
+								"post",
+								"68cadb91fcdc4888d14b6601"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getCommentsForPost",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/comments/post/68cadb91fcdc4888d14b6601",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"comments",
+										"post",
+										"68cadb91fcdc4888d14b6601"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "254"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"fe-IhrOeDkxCqO7TZbDZmURGwxOcC8\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Sep 2025 18:01:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"68caf740bcb07bbfdddf900d\",\n        \"userId\": {\n            \"_id\": \"68c96cd58c6f7785b91c6309\",\n            \"username\": \"praj1\",\n            \"profilePicUrl\": \"https://mycdn.com/avatar.png\"\n        },\n        \"postId\": \"68cadb91fcdc4888d14b6601\",\n        \"text\": \"Nice post! 👏\",\n        \"createdAt\": \"2025-09-17T18:00:32.920Z\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "getCommentsForProject",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/comments/project/68caf7c4bcb07bbfdddf9016",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"comments",
+								"project",
+								"68caf7c4bcb07bbfdddf9016"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getCommentsForProject",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/comments/project/68caf7c4bcb07bbfdddf9016",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"comments",
+										"project",
+										"68caf7c4bcb07bbfdddf9016"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Sep 2025 18:02:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[]"
+						},
+						{
+							"name": "getCommentsForProject",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/comments/project/68caf7c4bcb07bbfdddf9016",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"comments",
+										"project",
+										"68caf7c4bcb07bbfdddf9016"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "255"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ff-WdDYBKBnydYWG4g8zO8Yck1A3xs\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Sep 2025 18:05:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"68caf847bcb07bbfdddf901c\",\n        \"userId\": {\n            \"_id\": \"68c96cd58c6f7785b91c6309\",\n            \"username\": \"praj1\",\n            \"profilePicUrl\": \"https://mycdn.com/avatar.png\"\n        },\n        \"projectId\": \"68caf7c4bcb07bbfdddf9016\",\n        \"text\": \"Great project\",\n        \"createdAt\": \"2025-09-17T18:04:55.737Z\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "deleteComment",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/comments/68caf847bcb07bbfdddf901c",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"comments",
+								"68caf847bcb07bbfdddf901c"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "deleteComment",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/comments/68caf847bcb07bbfdddf901c",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"comments",
+										"68caf847bcb07bbfdddf901c"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26-VfnmjwJcAVXmd/F0rZxzuLrMwug\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Sep 2025 18:06:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"msg\": \"Comment deleted successfully\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Like",
+			"item": [
+				{
+					"name": "likeItem",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"postId\": \"68cac6f5be571541b6e43211\"\r\n}\r\n\r\n// {\r\n//     \"projectId\" : \"68c96cd58c6f7785b91c6309\"\r\n// }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/likes/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"likes",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "likeItem",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"postId\": \"68cac6f5be571541b6e43211\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/likes/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"likes",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "153"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"99-s01MDimSbUSJ8psE1gnsH4OCz/0\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Sep 2025 18:12:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"userId\": \"68c96cd58c6f7785b91c6309\",\n    \"postId\": \"68cac6f5be571541b6e43211\",\n    \"_id\": \"68cafa1b6f216186e6a0c301\",\n    \"createdAt\": \"2025-09-17T18:12:43.522Z\",\n    \"__v\": 0\n}"
+						},
+						{
+							"name": "likeProject",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "// {\r\n//     \"postId\": \"68cac6f5be571541b6e43211\"\r\n// }\r\n\r\n{\r\n    \"projectId\" : \"68c96cd58c6f7785b91c6309\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/likes/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"likes",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "156"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9c-D1mo/rBfzxV5tf+4EQZDKU6vDNk\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Sep 2025 18:15:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"userId\": \"68c96cd58c6f7785b91c6309\",\n    \"projectId\": \"68c96cd58c6f7785b91c6309\",\n    \"_id\": \"68cafac66f216186e6a0c307\",\n    \"createdAt\": \"2025-09-17T18:15:34.221Z\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "getPostLike",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/likes/post/68cac6f5be571541b6e43211",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"likes",
+								"post",
+								"68cac6f5be571541b6e43211"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/likes/post/68cac6f5be571541b6e43211",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"likes",
+										"post",
+										"68cac6f5be571541b6e43211"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "249"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f9-zFlocDEkgCTD1fKtaycL33HAW2M\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Sep 2025 18:13:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"count\": 1,\n    \"users\": [\n        {\n            \"_id\": \"68cafa1b6f216186e6a0c301\",\n            \"userId\": {\n                \"_id\": \"68c96cd58c6f7785b91c6309\",\n                \"username\": \"praj1\",\n                \"profilePicUrl\": \"https://mycdn.com/avatar.png\"\n            },\n            \"postId\": \"68cac6f5be571541b6e43211\",\n            \"createdAt\": \"2025-09-17T18:12:43.522Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "getProjectLike",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/likes/project/68c96cd58c6f7785b91c6309",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"likes",
+								"project",
+								"68c96cd58c6f7785b91c6309"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/likes/project/68c96cd58c6f7785b91c6309",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"likes",
+										"project",
+										"68c96cd58c6f7785b91c6309"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "252"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"fc-PBqdHUkVVcbob14aX7HbzM7jFUc\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Sep 2025 18:16:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"count\": 1,\n    \"users\": [\n        {\n            \"_id\": \"68cafac66f216186e6a0c307\",\n            \"userId\": {\n                \"_id\": \"68c96cd58c6f7785b91c6309\",\n                \"username\": \"praj1\",\n                \"profilePicUrl\": \"https://mycdn.com/avatar.png\"\n            },\n            \"projectId\": \"68c96cd58c6f7785b91c6309\",\n            \"createdAt\": \"2025-09-17T18:15:34.221Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"postId\": \"68cac6f5be571541b6e43211\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/likes/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"likes",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"postId\": \"68cac6f5be571541b6e43211\"\r\n}"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/likes/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"likes",
+										""
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "80"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"50-NdRLx1lTFCLf1YWUr0DPEoyFq5k\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Sep 2025 18:17:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"msg\": \"Cannot destructure property 'postId' of 'req.body' as it is undefined.\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Notification",
+			"item": [
+				{
+					"name": "getNotifications",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/notifications/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"notifications",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "NULL",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/notifications/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"notifications",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 18 Sep 2025 01:50:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Conversation",
+			"item": [
+				{
+					"name": "getUserConversations",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/conversations/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"conversations",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getUserConversation",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/conversations/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"conversations",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "335"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"14f-3BeK0O2nKEibtQpG0RN2yCJate4\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 18 Sep 2025 02:04:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"68cb68931c688a9a8ddb0521\",\n        \"user1Id\": {\n            \"_id\": \"68c96cd58c6f7785b91c6309\",\n            \"username\": \"praj1\",\n            \"profilePicUrl\": \"https://mycdn.com/avatar.png\"\n        },\n        \"user2Id\": {\n            \"_id\": \"68c95cda710d3040401f74f9\",\n            \"username\": \"praj\"\n        },\n        \"startedAt\": \"2025-09-18T02:04:03.215Z\",\n        \"createdAt\": \"2025-09-18T02:04:03.218Z\",\n        \"updatedAt\": \"2025-09-18T02:04:03.218Z\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "createConversation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userId\": \"68c95cda710d3040401f74f9\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/conversations/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"conversations",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Praj1-praj",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"userId\": \"68c95cda710d3040401f74f9\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/conversations/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"conversations",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "233"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e9-edeGT9kVvH5F3hrLWwifQ6h9ZtQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 18 Sep 2025 02:04:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user1Id\": \"68c96cd58c6f7785b91c6309\",\n    \"user2Id\": \"68c95cda710d3040401f74f9\",\n    \"_id\": \"68cb68931c688a9a8ddb0521\",\n    \"startedAt\": \"2025-09-18T02:04:03.215Z\",\n    \"createdAt\": \"2025-09-18T02:04:03.218Z\",\n    \"updatedAt\": \"2025-09-18T02:04:03.218Z\",\n    \"__v\": 0\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Messages",
+			"item": [
+				{
+					"name": "MessageAndNotification",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "// {\r\n//   \"conversationId\": \"68cb68931c688a9a8ddb0521\",\r\n//   \"text\": \"Hey, how's your project going?\"\r\n// }\r\n\r\n\r\n// {\r\n//   \"conversationId\": \"68cb68931c688a9a8ddb0521\",\r\n//   \"imageUrl\": \"https://example.com/screenshot.png\"\r\n// }\r\n\r\n\r\n{\r\n  \"conversationId\": \"68cb68931c688a9a8ddb0521\",\r\n  \"codeSnippet\": \"console.log('Hello from DevConnect!');\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/messages/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"messages",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "text",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"conversationId\": \"68cb68931c688a9a8ddb0521\",\r\n  \"text\": \"Hey, how's your project going?\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/messages/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"messages",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "312"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"138-jmuP8ODy3YEfvmoemUbl/rDrldM\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 18 Sep 2025 09:28:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"conversationId\": \"68cb68931c688a9a8ddb0521\",\n    \"senderId\": \"68c96cd58c6f7785b91c6309\",\n    \"text\": \"Hey, how's your project going?\",\n    \"isSeen\": false,\n    \"isDelivered\": true,\n    \"_id\": \"68cbd0ad20e66b720c4e958a\",\n    \"sentAt\": \"2025-09-18T09:28:13.317Z\",\n    \"createdAt\": \"2025-09-18T09:28:13.320Z\",\n    \"updatedAt\": \"2025-09-18T09:28:13.320Z\",\n    \"__v\": 0\n}"
+						},
+						{
+							"name": "image",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "// {\r\n//   \"conversationId\": \"68cb68931c688a9a8ddb0521\",\r\n//   \"text\": \"Hey, how's your project going?\"\r\n// }\r\n\r\n\r\n{\r\n  \"conversationId\": \"68cb68931c688a9a8ddb0521\",\r\n  \"imageUrl\": \"https://example.com/screenshot.png\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/messages/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"messages",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "320"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"140-wCuwylkdUWe9dgxAY/DEhhTRu+Q\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 18 Sep 2025 09:29:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"conversationId\": \"68cb68931c688a9a8ddb0521\",\n    \"senderId\": \"68c96cd58c6f7785b91c6309\",\n    \"imageUrl\": \"https://example.com/screenshot.png\",\n    \"isSeen\": false,\n    \"isDelivered\": true,\n    \"_id\": \"68cbd0f120e66b720c4e958f\",\n    \"sentAt\": \"2025-09-18T09:29:21.448Z\",\n    \"createdAt\": \"2025-09-18T09:29:21.449Z\",\n    \"updatedAt\": \"2025-09-18T09:29:21.449Z\",\n    \"__v\": 0\n}"
+						},
+						{
+							"name": "codeSnippet",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "// {\r\n//   \"conversationId\": \"68cb68931c688a9a8ddb0521\",\r\n//   \"text\": \"Hey, how's your project going?\"\r\n// }\r\n\r\n\r\n// {\r\n//   \"conversationId\": \"68cb68931c688a9a8ddb0521\",\r\n//   \"imageUrl\": \"https://example.com/screenshot.png\"\r\n// }\r\n\r\n\r\n{\r\n  \"conversationId\": \"68cb68931c688a9a8ddb0521\",\r\n  \"codeSnippet\": \"console.log('Hello from DevConnect!');\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/messages/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"messages",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "327"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"147-q00l3uRxvjGJsAHy9TMXMrgKyDY\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 18 Sep 2025 09:29:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"conversationId\": \"68cb68931c688a9a8ddb0521\",\n    \"senderId\": \"68c96cd58c6f7785b91c6309\",\n    \"codeSnippet\": \"console.log('Hello from DevConnect!');\",\n    \"isSeen\": false,\n    \"isDelivered\": true,\n    \"_id\": \"68cbd11720e66b720c4e9594\",\n    \"sentAt\": \"2025-09-18T09:29:59.181Z\",\n    \"createdAt\": \"2025-09-18T09:29:59.181Z\",\n    \"updatedAt\": \"2025-09-18T09:29:59.181Z\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "getMessages",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/messages/68cb68931c688a9a8ddb0521",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"messages",
+								"68cb68931c688a9a8ddb0521"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/messages/68cb68931c688a9a8ddb0521",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"messages",
+										"68cb68931c688a9a8ddb0521"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1572"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"624-DosGu/JtTWWD2m9FiqivlBfMfRE\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 18 Sep 2025 09:32:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"68cb697b1c688a9a8ddb0527\",\n        \"conversationId\": \"68cb68931c688a9a8ddb0521\",\n        \"senderId\": {\n            \"_id\": \"68c96cd58c6f7785b91c6309\",\n            \"username\": \"praj1\",\n            \"profilePicUrl\": \"https://mycdn.com/avatar.png\"\n        },\n        \"text\": \"Hey, how's your project going?\",\n        \"isSeen\": false,\n        \"isDelivered\": true,\n        \"sentAt\": \"2025-09-18T02:07:55.776Z\",\n        \"createdAt\": \"2025-09-18T02:07:55.777Z\",\n        \"updatedAt\": \"2025-09-18T02:07:55.777Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"68cbd0ad20e66b720c4e958a\",\n        \"conversationId\": \"68cb68931c688a9a8ddb0521\",\n        \"senderId\": {\n            \"_id\": \"68c96cd58c6f7785b91c6309\",\n            \"username\": \"praj1\",\n            \"profilePicUrl\": \"https://mycdn.com/avatar.png\"\n        },\n        \"text\": \"Hey, how's your project going?\",\n        \"isSeen\": false,\n        \"isDelivered\": true,\n        \"sentAt\": \"2025-09-18T09:28:13.317Z\",\n        \"createdAt\": \"2025-09-18T09:28:13.320Z\",\n        \"updatedAt\": \"2025-09-18T09:28:13.320Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"68cbd0f120e66b720c4e958f\",\n        \"conversationId\": \"68cb68931c688a9a8ddb0521\",\n        \"senderId\": {\n            \"_id\": \"68c96cd58c6f7785b91c6309\",\n            \"username\": \"praj1\",\n            \"profilePicUrl\": \"https://mycdn.com/avatar.png\"\n        },\n        \"imageUrl\": \"https://example.com/screenshot.png\",\n        \"isSeen\": false,\n        \"isDelivered\": true,\n        \"sentAt\": \"2025-09-18T09:29:21.448Z\",\n        \"createdAt\": \"2025-09-18T09:29:21.449Z\",\n        \"updatedAt\": \"2025-09-18T09:29:21.449Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"68cbd11720e66b720c4e9594\",\n        \"conversationId\": \"68cb68931c688a9a8ddb0521\",\n        \"senderId\": {\n            \"_id\": \"68c96cd58c6f7785b91c6309\",\n            \"username\": \"praj1\",\n            \"profilePicUrl\": \"https://mycdn.com/avatar.png\"\n        },\n        \"codeSnippet\": \"console.log('Hello from DevConnect!');\",\n        \"isSeen\": false,\n        \"isDelivered\": true,\n        \"sentAt\": \"2025-09-18T09:29:59.181Z\",\n        \"createdAt\": \"2025-09-18T09:29:59.181Z\",\n        \"updatedAt\": \"2025-09-18T09:29:59.181Z\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "markSeen",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/messages/68cbd0ad20e66b720c4e958a/seen",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"messages",
+								"68cbd0ad20e66b720c4e958a",
+								"seen"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "68cbd0ad20e66b720c4e958a",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/messages/68cbd0ad20e66b720c4e958a/seen",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"messages",
+										"68cbd0ad20e66b720c4e958a",
+										"seen"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "32"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"20-CmAQLgk/lsbyxKRJkW7wp2d3tds\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 18 Sep 2025 09:34:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"msg\": \"Message marked as seen\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "jwt",
+		"jwt": [
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			},
+			{
+				"key": "algorithm",
+				"value": "HS256",
+				"type": "string"
+			},
+			{
+				"key": "isSecretBase64Encoded",
+				"value": false,
+				"type": "boolean"
+			},
+			{
+				"key": "payload",
+				"value": "{}",
+				"type": "string"
+			},
+			{
+				"key": "headerPrefix",
+				"value": "Bearer",
+				"type": "string"
+			},
+			{
+				"key": "queryParamKey",
+				"value": "token",
+				"type": "string"
+			},
+			{
+				"key": "header",
+				"value": "{}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
