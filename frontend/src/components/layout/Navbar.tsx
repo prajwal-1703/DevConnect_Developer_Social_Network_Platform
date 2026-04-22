@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { 
-  Home, 
-  Folder, 
-  MessageCircle, 
-  User, 
+import {
+  Home,
+  Folder,
+  MessageCircle,
+  User,
   Users,
-  LogOut, 
-  Menu, 
+  LogOut,
+  Menu,
   X,
   Sun,
   Moon,
@@ -29,7 +29,7 @@ const navItems = [
   { name: 'Home', href: '/', icon: Home },
   { name: 'Feed', href: '/feed', icon: Rss },
   { name: 'Projects', href: '/projects', icon: Folder },
-  { name: 'Network', href: '/UserSearch', icon: Users },
+  // { name: 'Network', href: '/UserSearch', icon: Users },
   { name: 'Messages', href: '/messages', icon: MessageCircle },
 ];
 
@@ -72,7 +72,7 @@ export const Navbar = () => {
             {[
               { name: 'Feed', href: '/feed', icon: Rss },
               { name: 'Projects', href: '/projects', icon: Folder },
-              { name: 'Network', href: '/UserSearch', icon: Users },
+              // { name: 'Network', href: '/UserSearch', icon: Users },
               { name: 'Messages', href: '/messages', icon: MessageCircle },
             ].map((item) => (
               <Link
@@ -96,42 +96,42 @@ export const Navbar = () => {
             </button>
 
             {isAuthenticated ? (
-               <DropdownMenu>
-               <DropdownMenuTrigger asChild>
-                 <Button variant="ghost" className="relative h-10 w-10 rounded-full hover:bg-primary/10 border border-transparent hover:border-primary/30">
-                   <Avatar className="h-9 w-9">
-                     <AvatarImage src={user?.profilePicUrl || user?.avatar} alt={user?.username} />
-                     <AvatarFallback className="bg-primary/20 text-primary font-bold">
-                       {user?.username?.[0]?.toUpperCase()}
-                     </AvatarFallback>
-                   </Avatar>
-                 </Button>
-               </DropdownMenuTrigger>
-               <DropdownMenuContent className="w-56 bg-background border-border" align="end">
-                 <DropdownMenuItem asChild className="focus:bg-primary/10 focus:text-primary">
-                   <Link to={`/profile/${user?.id}`} className="flex items-center">
-                     <User className="mr-2 h-4 w-4" />
-                     <span>Profile</span>
-                   </Link>
-                 </DropdownMenuItem>
-                 <DropdownMenuItem onClick={logout} className="text-destructive focus:bg-destructive/10">
-                   <LogOut className="mr-2 h-4 w-4" />
-                   <span>Logout</span>
-                 </DropdownMenuItem>
-               </DropdownMenuContent>
-             </DropdownMenu>
-            ) : (
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button asChild size="sm" className="bg-primary text-background font-bold text-[10px] uppercase tracking-widest px-6 py-5 rounded-md shadow-[0_0_20px_rgba(0,255,238,0.2)] hover:shadow-[0_0_30px_rgba(0,255,238,0.4)] transition-all">
-                    <Link to="/register">Get Started</Link>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="relative h-10 w-10 rounded-full hover:bg-primary/10 border border-transparent hover:border-primary/30">
+                    <Avatar className="h-9 w-9">
+                      <AvatarImage src={user?.profilePicUrl || user?.avatar} alt={user?.username} />
+                      <AvatarFallback className="bg-primary/20 text-primary font-bold">
+                        {user?.username?.[0]?.toUpperCase()}
+                      </AvatarFallback>
+                    </Avatar>
                   </Button>
-                </motion.div>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56 bg-background border-border" align="end">
+                  <DropdownMenuItem asChild className="focus:bg-primary/10 focus:text-primary">
+                    <Link to={`/profile/${user?.id}`} className="flex items-center">
+                      <User className="mr-2 h-4 w-4" />
+                      <span>Profile</span>
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={logout} className="text-destructive focus:bg-destructive/10">
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Logout</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button asChild size="sm" className="bg-primary text-background font-bold text-[10px] uppercase tracking-widest px-6 py-5 rounded-md shadow-[0_0_20px_rgba(0,255,238,0.2)] hover:shadow-[0_0_30px_rgba(0,255,238,0.4)] transition-all">
+                  <Link to="/register">Get Started</Link>
+                </Button>
+              </motion.div>
             )}
 
             {/* Mobile Toggle */}
             <button
-               className="lg:hidden p-2 text-muted-foreground"
-               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="lg:hidden p-2 text-muted-foreground"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -142,9 +142,9 @@ export const Navbar = () => {
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <motion.div
-           initial={{ opacity: 0, y: -20 }}
-           animate={{ opacity: 1, y: 0 }}
-           className="lg:hidden bg-background border-b border-border p-6"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="lg:hidden bg-background border-b border-border p-6"
         >
           <div className="flex flex-col space-y-4">
             {navItems.map((item) => (
