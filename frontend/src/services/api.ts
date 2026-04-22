@@ -28,8 +28,7 @@ api.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       localStorage.removeItem('devconnect-token');
-      // Don't redirect here - let the AuthContext handle it
-      console.log('401 error detected, token removed');
+      window.dispatchEvent(new Event('devconnect-unauthorized'));
     }
     return Promise.reject(error);
   }

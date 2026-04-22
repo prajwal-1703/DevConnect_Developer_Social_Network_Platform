@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 const conversationSchema = new mongoose.Schema({
   user1Id: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   user2Id: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  lastMessage: { type: mongoose.Schema.Types.ObjectId, ref: "Message" },
+  unreadCount: { type: Number, default: 0 },
   startedAt: { type: Date, default: Date.now },
 }, { timestamps: true });
 

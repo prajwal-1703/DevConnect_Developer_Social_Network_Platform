@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { formatDistanceToNow } from 'date-fns';
-import { Heart, ExternalLink, Github, MoreHorizontal, Trash2, Eye } from 'lucide-react';
+import { Heart, ExternalLink, Github, MoreHorizontal, Trash2, Eye, Pencil } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -21,6 +21,7 @@ interface ProjectCardProps {
   project: Project;
   viewMode?: 'grid' | 'list';
   onLike?: (projectId: string) => void;
+  onEdit?: (project: Project) => void;
   onDelete?: (projectId: string) => void;
 }
 
@@ -43,6 +44,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   project, 
   viewMode = 'grid', 
   onLike, 
+  onEdit,
   onDelete 
 }) => {
   const { user } = useAuth();
@@ -120,6 +122,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
+                  <DropdownMenuItem onClick={() => onEdit?.(project)}>
+                    <Pencil className="mr-2 h-4 w-4" />
+                    Edit
+                  </DropdownMenuItem>
                   <DropdownMenuItem onClick={handleDelete} className="text-destructive">
                     <Trash2 className="mr-2 h-4 w-4" />
                     Delete

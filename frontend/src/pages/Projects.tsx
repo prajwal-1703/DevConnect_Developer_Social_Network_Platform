@@ -17,6 +17,7 @@ export default function Projects() {
   const [isLoading, setIsLoading] = useState(true);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [showCreateDialog, setShowCreateDialog] = useState(false);
+  const [editingProject, setEditingProject] = useState<Project | null>(null);
 
   const loadProjects = async () => {
     try {
@@ -43,6 +44,16 @@ export default function Projects() {
       const newProject = await projectsService.createProject(projectData);
       setProjects(prev => [newProject, ...prev]);
       setShowCreateDialog(false);
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const handleEditProject = async (projectId: string, projectData: Partial<CreateProjectData>) => {
+    try {
+      const updated = await projectsService.updateProject(projectId, projectData);
+      setProjects(prev => prev.map(p => p.id === projectId ? updated : p));
+      setEditingProject(null);
     } catch (error) {
       throw error;
     }
@@ -132,16 +143,30 @@ export default function Projects() {
               </Button>
             </div>
             
-            {/* Create Project Button */}
-            <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
-              <DialogTrigger asChild>
-                <Button className="bg-gradient-primary hover:opacity-90">
-                  <Plus className="h-4 w-4 mr-2" />
-                  New Project
-                </Button>
-              </DialogTrigger>
+            {/* Create/Edit Project Dialog */}
+            <Dialog 
+              open={showCreateDialog || !!editingProject} 
+              onOpenChange={(open) => {
+                if (!open) {
+                  setShowCreateDialog(false);
+                  setEditingProject(null);
+                }
+              }}
+            >
+              <Button 
+                onClick={() => setShowCreateDialog(true)}
+                className="bg-gradient-primary hover:opacity-90"
+              >
+                <Plus className="h-4 w-4 mr-2" />
+                New Project
+              </Button>
               <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto">
-                <CreateProject onCreateProject={handleCreateProject} />
+                <CreateProject 
+                  key={editingProject?.id || 'new'}
+                  onCreateProject={editingProject ? undefined : handleCreateProject}
+                  onEditProject={editingProject ? handleEditProject : undefined}
+                  initialData={editingProject || undefined}
+                />
               </DialogContent>
             </Dialog>
           </div>
@@ -179,6 +204,7 @@ export default function Projects() {
                   project={project}
                   viewMode={viewMode}
                   onLike={handleLikeProject}
+                  onEdit={(p) => setEditingProject(p)}
                   onDelete={handleDeleteProject}
                 />
               </motion.div>

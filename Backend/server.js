@@ -3,6 +3,7 @@ import { Server as SocketIOServer } from "socket.io";
 import jwt from "jsonwebtoken";
 import app from "./src/app.js";
 import connectDB from "./src/config/db.js";
+import { setIo } from "./src/utils/socketUtils.js";
 
 connectDB();
 
@@ -16,6 +17,8 @@ const io = new SocketIOServer(server, {
   },
   path: "/socket.io",
 });
+
+setIo(io);
 
 io.use((socket, next) => {
   try {

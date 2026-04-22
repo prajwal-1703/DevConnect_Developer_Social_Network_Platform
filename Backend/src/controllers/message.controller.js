@@ -19,6 +19,12 @@ export const sendMessage = async (req, res) => {
       codeSnippet,
     });
 
+    // Update conversation metadata
+    await Conversation.findByIdAndUpdate(conversationId, {
+      lastMessage: message._id,
+      $inc: { unreadCount: 1 }
+    });
+
     // find receiver
     const receiverId = conversation.user1Id.toString() === req.user.id
       ? conversation.user2Id
@@ -28,10 +34,28 @@ export const sendMessage = async (req, res) => {
     await Notification.create({
       userId: receiverId,
       senderId: req.user.id,
-      type: "message",   // 👈 extend notifications to support "message"
+      type: "message",
     });
 
-    res.status(201).json(message);
+    // Populate and transform for response & socket
+    const populatedMessage = await Message.findById(message._id).populate("senderId", "username profilePicUrl");
+    const obj = populatedMessage.toObject();
+    obj.id = obj._id;
+    obj.sender = {
+      id: obj.senderId?._id || obj.senderId,
+      username: obj.senderId?.username || "Unknown",
+      avatar: obj.senderId?.profilePicUrl || ""
+    };
+    obj.content = obj.text || obj.imageUrl || obj.codeSnippet || "";
+    delete obj.senderId;
+    delete obj._id;
+
+    // Emit via socket
+    import("../utils/socketUtils.js").then(({ emitToUser }) => {
+      emitToUser(receiverId, "newMessage", obj);
+    });
+
+    res.status(201).json(obj);
   } catch (err) {
     res.status(500).json({ msg: err.message });
   }
@@ -40,9 +64,11 @@ export const sendMessage = async (req, res) => {
 // 📍 Get messages for a conversation
 export const getMessages = async (req, res) => {
   try {
+    console.log(`User ${req.user.id} fetching messages for conv: ${req.params.conversationId}`);
     const messages = await Message.find({ conversationId: req.params.conversationId })
       .populate("senderId", "username profilePicUrl")
       .sort({ createdAt: 1 });
+    console.log(`Found ${messages.length} messages`);
 
     // Transform senderId to sender object for frontend compatibility
     const transformed = messages.map(msg => {

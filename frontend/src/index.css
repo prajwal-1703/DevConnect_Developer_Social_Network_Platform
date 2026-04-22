@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,110 +7,124 @@
 /* DevConnect Design System - Premium developer social platform */
 
 @layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+  }
+
   :root {
-    /* Sophisticated Modern Theme */
-    --background: 210 40% 98%; /* #F8FAFC */
-    --foreground: 215 25% 12%; /* #1E293B */
+    /* Grey-Teal-Black 'Cold Retro' Theme */
+    --background: 0 0% 96%; /* #F5F5F5 */
+    --foreground: 0 0% 12%; /* Darker Gray */
     
-    --card: 0 0% 100%; /* #FFFFFF */
-    --card-foreground: 215 25% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 12%;
     
-    --panel: 210 40% 98%;
-    --panel-foreground: 215 25% 12%;
+    --panel: 0 0% 92%;
+    --panel-foreground: 0 0% 12%;
     
     --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 12%;
+    --popover-foreground: 0 0% 12%;
     
-    --primary: 215 25% 12%; /* #0F172A */
-    --primary-foreground: 0 0% 100%;
+    --primary: 170 100% 35%; /* Vibrat Teal Base */
+    --primary-foreground: 0 0% 96%;
     
-    --secondary: 210 40% 98%;
-    --secondary-foreground: 215 25% 12%;
+    --secondary: 170 100% 45%; /* Brighter Teal */
+    --secondary-foreground: 0 0% 4%;
     
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 20% 39%; /* #64748B */
+    --muted: 0 0% 88%;
+    --muted-foreground: 170 100% 25%;
     
-    --accent: 199 89% 48%; /* #38BDF8 */
-    --accent-foreground: 0 0% 100%;
+    --accent: 170 100% 45%;
+    --accent-foreground: 0 0% 4%;
     
-    --success: 142 76% 36%; /* #22C55E */
+    --success: 142 76% 36%;
     --success-foreground: 0 0% 100%;
     
     --warning: 38 92% 50%;
     --warning-foreground: 0 0% 100%;
     
-    --destructive: 0 84% 60%; /* #EF4444 */
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
     
-    --border: 214 32% 91%; /* #E2E8F0 */
-    --input: 214 32% 91%;
-    --ring: 199 89% 48%;
+    --border: 0 0% 85%;
+    --input: 0 0% 85%;
+    --ring: 170 100% 40%;
     
     --radius: 0.75rem;
     
-    /* Custom gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(215 25% 12%), hsl(199 89% 48%));
-    --gradient-hero: linear-gradient(135deg, hsl(210 40% 98%), hsl(0 0% 100%));
-    --gradient-accent: linear-gradient(135deg, hsl(199 89% 48%), hsl(215 25% 12%));
+    /* Custom gradients - Neon Retro Feel */
+    --gradient-primary: linear-gradient(135deg, hsl(170 100% 35%), hsl(170 100% 60%));
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 96%), hsl(170 100% 95%));
+    --gradient-accent: linear-gradient(135deg, hsl(170 100% 60%), hsl(170 100% 35%));
     
     /* Animation easing */
     --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
     --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
     
-    /* Shadows */
-    --shadow-soft: 0 1px 3px 0 hsl(215 25% 12% / 0.1), 0 1px 2px 0 hsl(215 25% 12% / 0.06);
-    --shadow-medium: 0 4px 6px -1px hsl(215 25% 12% / 0.1), 0 2px 4px -1px hsl(215 25% 12% / 0.06);
-    --shadow-strong: 0 10px 15px -3px hsl(215 25% 12% / 0.1), 0 4px 6px -2px hsl(215 25% 12% / 0.05);
+    /* Shadows - Neutral and crisp */
+    --shadow-soft: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px 0 rgb(0 0 0 / 0.06);
+    --shadow-medium: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -1px rgb(0 0 0 / 0.06);
+    --shadow-strong: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.05);
   }
 
   .dark {
-    /* Sophisticated Dark Theme */
-    --background: 215 25% 12%; /* #0F172A */
-    --foreground: 210 40% 98%; /* #F8FAFC */
+    /* Cold Retro Extreme Dark Mode (Reference Aligned) */
+    --background: 0 0% 4%; /* Near Black #0A0A0A */
+    --foreground: 0 0% 96%; /* #F5F5F5 */
     
-    --card: 215 25% 12%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 8%; 
+    --card-foreground: 0 0% 96%;
     
-    --panel: 215 25% 12%;
-    --panel-foreground: 210 40% 98%;
+    --panel: 0 0% 10%;
+    --panel-foreground: 0 0% 96%;
     
-    --popover: 215 25% 12%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 96%;
     
-    --primary: 199 89% 48%; /* #38BDF8 */
-    --primary-foreground: 215 25% 12%;
+    --primary: 170 100% 50%; /* Pure Neon Teal/Cyan */
+    --primary-foreground: 0 0% 4%;
     
-    --secondary: 215 25% 12%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 170 30% 15%; /* Darker muted teal for panels */
+    --secondary-foreground: 170 100% 50%;
     
-    --muted: 215 25% 12%;
-    --muted-foreground: 215 20% 39%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 60%;
     
-    --accent: 199 89% 48%;
-    --accent-foreground: 215 25% 12%;
+    --accent: 170 100% 50%;
+    --accent-foreground: 0 0% 4%;
     
     --success: 142 76% 36%;
-    --success-foreground: 215 25% 12%;
+    --success-foreground: 0 0% 4%;
     
     --warning: 38 92% 50%;
-    --warning-foreground: 215 25% 12%;
+    --warning-foreground: 0 0% 4%;
     
     --destructive: 0 84% 60%;
-    --destructive-foreground: 215 25% 12%;
+    --destructive-foreground: 0 0% 4%;
     
-    --border: 215 25% 12%;
-    --input: 215 25% 12%;
-    --ring: 199 89% 48%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 170 100% 50%;
     
-    /* Dark gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(199 89% 48%), hsl(215 25% 12%));
-    --gradient-hero: linear-gradient(135deg, hsl(215 25% 12%), hsl(215 25% 12%));
-    --gradient-accent: linear-gradient(135deg, hsl(199 89% 48%), hsl(215 25% 12%));
+    /* Neon Dark gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(170 100% 50%), hsl(180 100% 40%));
+    --gradient-hero: radial-gradient(circle at top right, hsl(170 100% 50% / 0.15), transparent 40%), 
+                    radial-gradient(circle at bottom left, hsl(170 100% 30% / 0.1), transparent 40%);
+    --gradient-accent: linear-gradient(135deg, hsl(180 100% 40%), hsl(170 100% 50%));
     
-    /* Dark shadows */
-    --shadow-soft: 0 1px 3px 0 hsl(0 0% 0% / 0.2), 0 1px 2px 0 hsl(0 0% 0% / 0.1);
-    --shadow-medium: 0 4px 6px -1px hsl(0 0% 0% / 0.3), 0 2px 4px -1px hsl(0 0% 0% / 0.2);
-    --shadow-strong: 0 10px 15px -3px hsl(0 0% 0% / 0.4), 0 4px 6px -2px hsl(0 0% 0% / 0.3);
+    /* Dark shadows - Plain neutral shadows (no glow) */
+    --shadow-soft: 0 1px 3px 0 rgb(0 0 0 / 0.4);
+    --shadow-medium: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+    --shadow-strong: 0 10px 15px -3px rgb(0 0 0 / 0.6);
   }
 }
 

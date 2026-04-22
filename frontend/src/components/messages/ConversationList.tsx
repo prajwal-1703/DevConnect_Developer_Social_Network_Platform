@@ -1,22 +1,20 @@
-import React from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import { useAuth } from '@/contexts/AuthContext';
 import { useMessaging } from '@/contexts/MessagingContext';
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Card } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
-import { type Conversation } from '@/services/messagesService';
 import { NewChatDialog } from './NewChatDialog';
+import type { Conversation } from '@/services/messagesService';
 
 export function ConversationList() {
   const { user } = useAuth();
   const { conversations, currentConversation, setCurrentConversation } = useMessaging();
 
-  const getOtherParticipant = (conversation: any, currentUserId: string) => {
-    if (!conversation.user1Id || !conversation.user2Id) return null;
-    // user1Id and user2Id are populated objects
-    return conversation.user1Id._id === currentUserId ? conversation.user2Id : conversation.user1Id;
+  const getOtherParticipant = (conversation: Conversation, currentUserId: string) => {
+    if (!conversation.participants) return null;
+    return conversation.participants.find(p => String(p.id) !== String(currentUserId)) || conversation.participants[0];
   };
 
   return (
@@ -44,26 +42,34 @@ export function ConversationList() {
                   }`}
               >
                 <Avatar>
-                  <AvatarImage src={otherParticipant?.profilePicUrl || ''} alt={otherParticipant?.username || ''} />
+                  <AvatarImage src={otherParticipant?.avatar || ''} alt={otherParticipant?.username || ''} />
                   <AvatarFallback>{otherParticipant?.username ? otherParticipant.username[0].toUpperCase() : '?'}</AvatarFallback>
                 </Avatar>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between">
-                    <p className="font-medium truncate">{otherParticipant?.username || 'Unknown'}</p>
+                    <p className={`font-bold truncate ${isActive ? 'text-background' : 'text-foreground'}`}>
+                      {otherParticipant?.username || 'Unknown'}
+                    </p>
                     {conversation.lastMessage && (
-                      <span className="text-xs text-muted-foreground">
+                      <span className={`text-[10px] font-medium ${isActive ? 'text-background/70' : 'text-muted-foreground'}`}>
                         {formatDistanceToNow(new Date(conversation.lastMessage.createdAt), { addSuffix: true })}
                       </span>
                     )}
                   </div>
-                  <p className="text-sm text-muted-foreground truncate">
-                    {conversation.lastMessage?.content || 'No messages yet'}
-                  </p>
-                  {conversation.unreadCount > 0 && (
-                    <Badge variant="secondary" className="mt-1">
-                      {conversation.unreadCount} new
-                    </Badge>
-                  )}
+                  <div className="flex items-center justify-between mt-0.5">
+                    <p className={`text-[11px] truncate max-w-[150px] leading-tight ${isActive ? 'text-background/80 font-medium' : 'text-muted-foreground'}`}>
+                      {conversation.lastMessage?.content || 'History empty'}
+                    </p>
+                    {conversation.unreadCount > 0 && (
+                      <Badge className={`h-5 min-w-[20px] justify-center px-1 rounded-full text-[10px] font-bold ${
+                        isActive 
+                          ? 'bg-background text-primary border-none' 
+                          : 'bg-primary text-background'
+                      }`}>
+                        {conversation.unreadCount}
+                      </Badge>
+                    )}
+                  </div>
                 </div>
               </div>
             );

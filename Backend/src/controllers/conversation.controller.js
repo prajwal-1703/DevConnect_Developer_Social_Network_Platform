@@ -1,4 +1,6 @@
+import mongoose from "mongoose";
 import Conversation from "../models/Conversation.js";
+import Message from "../models/Message.js";
 
 // 📍 Start a conversation
 export const createConversation = async (req, res) => {
@@ -42,15 +44,38 @@ export const getUserConversations = async (req, res) => {
       $or: [{ user1Id: req.user.id }, { user2Id: req.user.id }],
     })
       .populate("user1Id", "username profilePicUrl")
-      .populate("user2Id", "username profilePicUrl");
+      .populate("user2Id", "username profilePicUrl")
+      .populate("lastMessage");
 
-    const convs = conversations.map(c => {
+    const enriched = await Promise.all(conversations.map(async (c) => {
       const obj = c.toObject();
-      obj.id = obj._id;
+      obj.id = String(obj._id);
+      
+      // Fallback for missing lastMessage field (legacy data)
+      if (!obj.lastMessage) {
+        const lastMsg = await Message.findOne({ conversationId: obj._id }).sort({ createdAt: -1 });
+        if (lastMsg) {
+          console.log(`Fallback found for conversation ${obj.id}: ${lastMsg.text || 'media'}`);
+          obj.lastMessage = lastMsg.toObject();
+        }
+      }
+      
       delete obj._id;
       return obj;
-    });
-    res.json(convs);
+    }));
+
+    console.log(`Sending ${enriched.length} enriched conversations to client`);
+    res.json(enriched);
+  } catch (err) {
+    res.status(500).json({ msg: err.message });
+  }
+};
+
+// 📍 Mark conversation as read (reset unread count)
+export const markConversationAsRead = async (req, res) => {
+  try {
+    await Conversation.findByIdAndUpdate(req.params.id, { unreadCount: 0 });
+    res.json({ msg: "Conversation marked as read" });
   } catch (err) {
     res.status(500).json({ msg: err.message });
   }

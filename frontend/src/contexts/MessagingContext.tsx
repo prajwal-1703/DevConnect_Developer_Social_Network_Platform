@@ -107,7 +107,7 @@ export const MessagingProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     }
   }, [isAuthenticated, user]);
 
-  const sendMessage = async (content: string, type: 'text' | 'image' | 'code' = 'text') => {
+  const sendMessage = React.useCallback(async (content: string, type: 'text' | 'image' | 'code' = 'text') => {
     if (currentConversation) {
       try {
         let messageField = {};
@@ -118,24 +118,35 @@ export const MessagingProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         const newMessage = await messagesService.sendMessage(currentConversation, messageField);
         setMessages(prev => [...prev, newMessage]);
         
+        // Map message to lastMessage shape
+        const lastMsgDesc = newMessage.text || (newMessage.imageUrl ? '📷 Photo' : (newMessage.codeSnippet ? '💻 Code' : ''));
+        
         // Update conversation with new message
         setConversations(prev => 
-          prev.map(conv => 
-            conv.id === currentConversation
-              ? { ...conv, lastMessage: newMessage }
-              : conv
-          )
+          prev.map(conv => {
+            if (conv.id === currentConversation) {
+              return { 
+                ...conv, 
+                lastMessage: { content: lastMsgDesc, createdAt: newMessage.createdAt, senderId: newMessage.senderId } 
+              };
+            }
+            return conv;
+          })
         );
       } catch (error) {
         console.error('Failed to send message:', error);
       }
     }
-  };
+  }, [currentConversation]);
 
-  const setCurrentConversation = async (id: string | null) => {
+  const setCurrentConversation = React.useCallback(async (id: string | null) => {
     setCurrentConversationState(id);
     if (id) {
       try {
+        // Mark as read asynchronously and don't await to avoid blocking message fetch
+        messagesService.markAsRead(id).catch(e => console.error("Mark read failed:", e));
+        setConversations(prev => prev.map(c => c.id === id ? { ...c, unreadCount: 0 } : c));
+        
         const messagesData = await messagesService.getMessages(id);
         setMessages(messagesData);
       } catch (error) {
@@ -145,38 +156,27 @@ export const MessagingProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     } else {
       setMessages([]);
     }
-  };
+  }, []);
 
-  const markAsRead = async (conversationId: string) => {
+  const markAsRead = React.useCallback(async (conversationId: string) => {
     try {
-      // Mark all messages in the conversation as read
-      const conversation = conversations.find(conv => conv.id === conversationId);
-      if (conversation) {
-        // Update local state
-        setConversations(prev => 
-          prev.map(conv => 
-            conv.id === conversationId ? { ...conv, unreadCount: 0 } : conv
-          )
-        );
-        
-        // Mark messages as seen via API
-        const unreadMessages = messages.filter(msg => 
-          msg.conversationId === conversationId && !msg.isSeen
-        );
-        
-        for (const message of unreadMessages) {
-          if (message.id) {
-            await messagesService.markMessageAsSeen(message.id);
-          }
-        }
-      }
+      await messagesService.markAsRead(conversationId);
+      setConversations(prev => 
+        prev.map(conv => 
+          conv.id === conversationId ? { ...conv, unreadCount: 0 } : conv
+        )
+      );
     } catch (error) {
       console.error('Failed to mark messages as read:', error);
     }
-  };
+  }, []);
 
-  const createConversation = async (conversation: Conversation) => {
-    setConversations(prev => [conversation, ...prev]);
+  const createConversation = React.useCallback(async (conversation: Conversation) => {
+    setConversations(prev => {
+      const exists = prev.find(c => c.id === conversation.id);
+      if (exists) return prev;
+      return [conversation, ...prev];
+    });
     setCurrentConversationState(conversation.id);
     if (!conversation.id) {
       console.error('Conversation object missing id:', conversation);
@@ -189,7 +189,7 @@ export const MessagingProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     } catch (error) {
       setMessages([]);
     }
-  };
+  }, []);
 
   const value = {
     socket,
@@ -201,7 +201,6 @@ export const MessagingProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     setCurrentConversation,
     markAsRead,
     createConversation,
-
   };
 
   return <MessagingContext.Provider value={value}>{children}</MessagingContext.Provider>;

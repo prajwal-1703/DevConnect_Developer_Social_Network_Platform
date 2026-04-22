@@ -192,7 +192,14 @@ export const updateProject = async (req, res) => {
 
     await project.save();
 
-    res.json(project);
+    const populated = await Project.findById(project._id)
+      .populate("userId", "username profilePicUrl")
+      .populate("tags");
+
+    const likesCount = await Like.countDocuments({ projectId: project._id });
+    const isLiked = !!(await Like.findOne({ projectId: project._id, userId: req.user.id }));
+
+    res.json({ ...populated.toObject(), likesCount, isLiked });
   } catch (err) {
     res.status(500).json({ msg: err.message });
   }

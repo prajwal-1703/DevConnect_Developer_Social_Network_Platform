@@ -555,15 +555,6 @@ export default function Profile() {
 
   return (
     <Layout>
-      {/* Debug Panel - Remove this in production */}
-      <div className="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded mb-4">
-        <div className="text-sm">
-          <strong>Debug Info:</strong> userId={userId} | targetUserId={targetUserId} | 
-          user={user ? user.username : 'null'} | isLoading={isLoading ? 'true' : 'false'} | 
-          isAuthenticated={isAuthenticated ? 'true' : 'false'}
-        </div>
-      </div>
-      
       <div className="max-w-4xl mx-auto space-y-6">
         {/* Profile Header */}
         <motion.div

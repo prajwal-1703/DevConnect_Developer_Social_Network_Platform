@@ -19,7 +19,9 @@ import type { CreateProjectData } from '@/services/projectsService';
 import { uploadService } from '@/services/uploadService';
 
 interface CreateProjectProps {
-  onCreateProject: (projectData: CreateProjectData) => Promise<void>;
+  onCreateProject?: (projectData: CreateProjectData) => Promise<void>;
+  onEditProject?: (projectId: string, projectData: Partial<CreateProjectData>) => Promise<void>;
+  initialData?: Project;
 }
 
 const commonTechStack = [
@@ -32,16 +34,20 @@ const commonTechStack = [
   'Jest', 'Cypress', 'Playwright', 'Vitest'
 ];
 
-export const CreateProject: React.FC<CreateProjectProps> = ({ onCreateProject }) => {
+export const CreateProject: React.FC<CreateProjectProps> = ({ 
+  onCreateProject, 
+  onEditProject, 
+  initialData 
+}) => {
   const { toast } = useToast();
+  const isEditing = !!initialData;
   
   const [formData, setFormData] = useState<CreateProjectData>({
-    title: '',
-    description: '',
-    techStack: [],
-    githubUrl: '',
-    liveUrl: '',
-    status: 'planning',
+    title: initialData?.title || '',
+    description: initialData?.description || '',
+    tags: initialData?.techStack || [],
+    githubLink: initialData?.githubUrl || '',
+    status: initialData?.status || 'planning',
   });
   
   const [techInput, setTechInput] = useState('');
@@ -55,10 +61,10 @@ export const CreateProject: React.FC<CreateProjectProps> = ({ onCreateProject })
 
   const addTech = (tech: string) => {
     const trimmedTech = tech.trim();
-    if (trimmedTech && !formData.techStack.includes(trimmedTech)) {
+    if (trimmedTech && !formData.tags.includes(trimmedTech)) {
       setFormData(prev => ({
         ...prev,
-        techStack: [...prev.techStack, trimmedTech]
+        tags: [...prev.tags, trimmedTech]
       }));
     }
     setTechInput('');
@@ -67,7 +73,7 @@ export const CreateProject: React.FC<CreateProjectProps> = ({ onCreateProject })
   const removeTech = (tech: string) => {
     setFormData(prev => ({
       ...prev,
-      techStack: prev.techStack.filter(t => t !== tech)
+      tags: prev.tags.filter(t => t !== tech)
     }));
   };
 
@@ -99,22 +105,30 @@ export const CreateProject: React.FC<CreateProjectProps> = ({ onCreateProject })
         imageUrl = res.imageUrl;
       }
 
-      await onCreateProject({
-        title: formData.title.trim(),
-        description: formData.description.trim(),
-        githubLink: formData.githubUrl?.trim() || undefined,
-        imageUrl,
-        tags: formData.techStack,
-        status: formData.status,
-      });
-      
-      toast({
-        title: 'Project created!',
-        description: 'Your project has been shared with the community',
-      });
+      if (isEditing && onEditProject && initialData) {
+        await onEditProject(initialData.id, {
+          title: formData.title.trim(),
+          description: formData.description.trim(),
+          githubLink: formData.githubLink?.trim() || undefined,
+          imageUrl: imageUrl || initialData.images?.[0],
+          tags: formData.tags,
+          status: formData.status,
+        });
+        toast({ title: 'Project updated!', description: 'Your changes have been saved.' });
+      } else if (onCreateProject) {
+        await onCreateProject({
+          title: formData.title.trim(),
+          description: formData.description.trim(),
+          githubLink: formData.githubUrl?.trim() || undefined,
+          imageUrl,
+          tags: formData.techStack,
+          status: formData.status,
+        });
+        toast({ title: 'Project created!', description: 'Your project has been shared.' });
+      }
     } catch (error) {
       toast({
-        title: 'Failed to create project',
+        title: `Failed to ${isEditing ? 'update' : 'create'} project`,
         description: 'Something went wrong. Please try again.',
         variant: 'destructive',
       });
@@ -126,9 +140,9 @@ export const CreateProject: React.FC<CreateProjectProps> = ({ onCreateProject })
   return (
     <div className="space-y-6">
       <DialogHeader>
-        <DialogTitle className="text-2xl">Create New Project</DialogTitle>
+        <DialogTitle className="text-2xl">{isEditing ? 'Edit Project' : 'Create New Project'}</DialogTitle>
         <DialogDescription>
-          Share your project with the DevConnect community
+          {isEditing ? 'Update your project details and tags' : 'Share your project with the DevConnect community'}
         </DialogDescription>
       </DialogHeader>
 
@@ -190,7 +204,7 @@ export const CreateProject: React.FC<CreateProjectProps> = ({ onCreateProject })
                     variant="outline"
                     size="sm"
                     onClick={() => addTech(tech)}
-                    disabled={formData.techStack.includes(tech)}
+                    disabled={formData.tags.includes(tech)}
                     className="h-7 text-xs"
                   >
                     {tech}
@@ -200,9 +214,9 @@ export const CreateProject: React.FC<CreateProjectProps> = ({ onCreateProject })
             </div>
             
             {/* Selected Tech Stack */}
-            {formData.techStack.length > 0 && (
+            {formData.tags.length > 0 && (
               <div className="flex flex-wrap gap-2">
-                {formData.techStack.map((tech) => (
+                {formData.tags.map((tech) => (
                   <motion.div
                     key={tech}
                     initial={{ opacity: 0, scale: 0.8 }}
@@ -251,23 +265,14 @@ export const CreateProject: React.FC<CreateProjectProps> = ({ onCreateProject })
         </div>
 
         {/* URLs */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4">
           <div className="space-y-2">
-            <Label htmlFor="githubUrl">GitHub URL</Label>
+            <Label htmlFor="githubLink">GitHub URL</Label>
             <Input
-              id="githubUrl"
+              id="githubLink"
               placeholder="https://github.com/username/repo"
-              value={formData.githubUrl}
-              onChange={(e) => handleInputChange('githubUrl', e.target.value)}
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="liveUrl">Live Demo URL</Label>
-            <Input
-              id="liveUrl"
-              placeholder="https://myproject.com"
-              value={formData.liveUrl}
-              onChange={(e) => handleInputChange('liveUrl', e.target.value)}
+              value={formData.githubLink}
+              onChange={(e) => handleInputChange('githubLink', e.target.value)}
             />
           </div>
         </div>
@@ -305,7 +310,9 @@ export const CreateProject: React.FC<CreateProjectProps> = ({ onCreateProject })
           ) : (
             <Send className="h-4 w-4 mr-2" />
           )}
-          {isSubmitting ? 'Creating...' : 'Create Project'}
+          {isSubmitting 
+            ? (isEditing ? 'Saving...' : 'Creating...') 
+            : (isEditing ? 'Save Changes' : 'Create Project')}
         </Button>
       </form>
     </div>

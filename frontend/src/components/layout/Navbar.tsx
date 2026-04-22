@@ -3,15 +3,16 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
   Home, 
-  Rss, 
   Folder, 
   MessageCircle, 
   User, 
+  Users,
   LogOut, 
   Menu, 
   X,
   Sun,
-  Moon
+  Moon,
+  Rss
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useTheme } from '@/contexts/ThemeContext';
@@ -28,11 +29,12 @@ const navItems = [
   { name: 'Home', href: '/', icon: Home },
   { name: 'Feed', href: '/feed', icon: Rss },
   { name: 'Projects', href: '/projects', icon: Folder },
+  { name: 'Network', href: '/UserSearch', icon: Users },
   { name: 'Messages', href: '/messages', icon: MessageCircle },
 ];
 
 export const Navbar = () => {
-  const { user, logout } = useAuth();
+  const { user, isAuthenticated, logout } = useAuth();
   const { theme, toggleTheme } = useTheme();
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -43,137 +45,121 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-border bg-card/80 backdrop-blur-xl shadow-soft">
+    <nav className="fixed top-0 z-[100] w-full border-b border-white/5 bg-background/60 backdrop-blur-2xl">
       <div className="container mx-auto px-6">
-        <div className="flex h-16 items-center justify-between">
-          {/* Logo */}
+        <div className="flex h-20 items-center justify-between">
+          {/* Logo Section */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="flex items-center space-x-3"
+            className="flex items-center space-x-4"
           >
-            <Link to="/" className="flex items-center space-x-3">
-              <div className="h-10 w-10 rounded-xl bg-gradient-primary flex items-center justify-center shadow-medium">
-                <span className="text-primary-foreground font-bold text-lg">DC</span>
+            <Link to="/" className="flex items-center space-x-3 group">
+              <div className="h-10 w-10 rounded-lg bg-primary/20 border border-primary/40 flex items-center justify-center group-hover:bg-primary/30 transition-all">
+                <span className="text-primary font-black text-lg">VC</span>
               </div>
-              <span className="hidden sm:block text-xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                DevConnect
-              </span>
+              <div className="flex flex-col leading-none">
+                <span className="text-xl font-black tracking-tighter uppercase text-foreground">
+                  Dev<span className="text-primary">Connect</span>
+                </span>
+                <span className="text-[8px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60">Visible Network</span>
+              </div>
             </Link>
           </motion.div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-2">
-            {navItems.map((item, index) => (
-              <motion.div
+          {/* Desktop Navigation - Minimalist */}
+          <div className="hidden lg:flex items-center space-x-8">
+            {[
+              { name: 'Feed', href: '/feed', icon: Rss },
+              { name: 'Projects', href: '/projects', icon: Folder },
+              { name: 'Network', href: '/UserSearch', icon: Users },
+              { name: 'Messages', href: '/messages', icon: MessageCircle },
+            ].map((item) => (
+              <Link
                 key={item.name}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
+                to={item.href}
+                className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/80 hover:text-primary transition-colors flex items-center space-x-2"
               >
-                <Link
-                  to={item.href}
-                  className={`px-4 py-2 rounded-full transition-colors duration-200 flex items-center gap-2 ${
-                    isActive(item.href)
-                      ? 'bg-primary/20 text-primary'
-                      : 'text-muted-foreground hover:text-foreground hover:bg-muted/40'
-                  }`}
-                >
-                  <item.icon className="h-4 w-4" />
-                  <span className="font-medium">{item.name}</span>
-                </Link>
-              </motion.div>
+                <item.icon className="h-3 w-3" />
+                <span>{item.name}</span>
+              </Link>
             ))}
           </div>
 
-          {/* Actions */}
-          <div className="flex items-center space-x-3">
-            {/* Theme Toggle */}
-            <Button
-              variant="ghost"
-              size="sm"
+          {/* Right Side Actions */}
+          <div className="flex items-center space-x-4">
+            <button
               onClick={toggleTheme}
-              className="relative overflow-hidden hover:bg-accent hover:text-accent-foreground"
+              className="p-2 rounded-lg hover:bg-white/5 transition-all text-muted-foreground hover:text-primary"
             >
-              <motion.div
-                initial={false}
-                animate={{ rotate: theme === 'dark' ? 180 : 0 }}
-                transition={{ duration: 0.3, ease: 'easeInOut' }}
-              >
-                {theme === 'light' ? (
-                  <Sun className="h-4 w-4" />
-                ) : (
-                  <Moon className="h-4 w-4" />
-                )}
-              </motion.div>
-            </Button>
+              {theme === 'light' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            </button>
 
-            {/* User Menu */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="relative h-10 w-10 rounded-full hover:bg-accent">
-                  <Avatar className="h-10 w-10">
-                    <AvatarImage src={user?.profilePicUrl || user?.avatar} alt={user?.username} />
-                    <AvatarFallback className="bg-gradient-primary text-primary-foreground">
-                      {user?.username?.[0]?.toUpperCase()}
-                    </AvatarFallback>
-                  </Avatar>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56" align="end">
-                <DropdownMenuItem asChild>
-                  <Link to={`/profile/${user?.id}`} className="flex items-center">
-                    <User className="mr-2 h-4 w-4" />
-                    <span>Profile</span>
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={logout} className="text-destructive">
-                  <LogOut className="mr-2 h-4 w-4" />
-                  <span>Logout</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            {isAuthenticated ? (
+               <DropdownMenu>
+               <DropdownMenuTrigger asChild>
+                 <Button variant="ghost" className="relative h-10 w-10 rounded-full hover:bg-primary/10 border border-transparent hover:border-primary/30">
+                   <Avatar className="h-9 w-9">
+                     <AvatarImage src={user?.profilePicUrl || user?.avatar} alt={user?.username} />
+                     <AvatarFallback className="bg-primary/20 text-primary font-bold">
+                       {user?.username?.[0]?.toUpperCase()}
+                     </AvatarFallback>
+                   </Avatar>
+                 </Button>
+               </DropdownMenuTrigger>
+               <DropdownMenuContent className="w-56 bg-background border-border" align="end">
+                 <DropdownMenuItem asChild className="focus:bg-primary/10 focus:text-primary">
+                   <Link to={`/profile/${user?.id}`} className="flex items-center">
+                     <User className="mr-2 h-4 w-4" />
+                     <span>Profile</span>
+                   </Link>
+                 </DropdownMenuItem>
+                 <DropdownMenuItem onClick={logout} className="text-destructive focus:bg-destructive/10">
+                   <LogOut className="mr-2 h-4 w-4" />
+                   <span>Logout</span>
+                 </DropdownMenuItem>
+               </DropdownMenuContent>
+             </DropdownMenu>
+            ) : (
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button asChild size="sm" className="bg-primary text-background font-bold text-[10px] uppercase tracking-widest px-6 py-5 rounded-md shadow-[0_0_20px_rgba(0,255,238,0.2)] hover:shadow-[0_0_30px_rgba(0,255,238,0.4)] transition-all">
+                    <Link to="/register">Get Started</Link>
+                  </Button>
+                </motion.div>
+            )}
 
-            {/* Mobile Menu Toggle */}
-            <Button
-              variant="ghost"
-              size="sm"
-              className="md:hidden hover:bg-accent"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            {/* Mobile Toggle */}
+            <button
+               className="lg:hidden p-2 text-muted-foreground"
+               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
-              {isMobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
-            </Button>
+              {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
           </div>
         </div>
-
-        {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-t border-border py-4"
-          >
-            <div className="flex flex-col space-y-2">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={`flex items-center space-x-3 px-4 py-3 rounded-full transition-colors duration-200 ${
-                    isActive(item.href)
-                      ? 'bg-primary/20 text-primary'
-                      : 'text-muted-foreground hover:text-foreground hover:bg-muted/40'
-                  }`}
-                >
-                  <item.icon className="h-5 w-5" />
-                  <span className="font-medium">{item.name}</span>
-                </Link>
-              ))}
-            </div>
-          </motion.div>
-        )}
       </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <motion.div
+           initial={{ opacity: 0, y: -20 }}
+           animate={{ opacity: 1, y: 0 }}
+           className="lg:hidden bg-background border-b border-border p-6"
+        >
+          <div className="flex flex-col space-y-4">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                to={item.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-sm font-bold uppercase tracking-widest text-muted-foreground hover:text-primary"
+              >
+                {item.name}
+              </Link>
+            ))}
+          </div>
+        </motion.div>
+      )}
     </nav>
   );
 };

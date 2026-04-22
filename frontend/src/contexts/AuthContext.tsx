@@ -84,17 +84,24 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     initAuth();
   }, []);
 
-  // Listen for storage changes (e.g., token removed in another tab)
+  // Listen for storage changes (e.g., token removed in another tab) or custom logout events
   useEffect(() => {
     const handleStorageChange = (e: StorageEvent) => {
       if (e.key === 'devconnect-token' && !e.newValue && user) {
-        console.log('Token removed in another tab, logging out');
         setUser(null);
       }
     };
 
+    const handleUnauthorized = () => {
+      setUser(null);
+    };
+
     window.addEventListener('storage', handleStorageChange);
-    return () => window.removeEventListener('storage', handleStorageChange);
+    window.addEventListener('devconnect-unauthorized', handleUnauthorized);
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('devconnect-unauthorized', handleUnauthorized);
+    };
   }, [user]);
 
   // ------------------

@@ -4,25 +4,27 @@ import User from "../models/User.js";
 export const searchUsers = async (req, res) => {
   try {
     const { q } = req.query;
-    if (!q) return res.json([]);
-    const users = await User.find({
-      $and: [
-        { _id: { $ne: req.user.id } },
-        {
-          $or: [
-            { username: { $regex: q, $options: 'i' } },
-            { email: { $regex: q, $options: 'i' } }
-          ]
-        }
-      ]
-    })
-    .select('username email profilePicUrl')
-    .limit(10);
+    let query = { _id: { $ne: req.user.id } };
+    
+    if (q) {
+      query.$or = [
+        { username: { $regex: q, $options: 'i' } },
+        { email: { $regex: q, $options: 'i' } }
+      ];
+    }
+
+    const users = await User.find(query)
+      .select('username email profilePicUrl followers')
+      .limit(20)
+      .sort({ createdAt: -1 });
+
     const transformedUsers = users.map(user => ({
-      id: user._id,
+      _id: user._id,
       username: user.username,
-      avatar: user.profilePicUrl
+      avatar: user.profilePicUrl,
+      isFollowed: user.followers?.includes(req.user.id) || false
     }));
+
     res.json(transformedUsers);
   } catch (err) {
     res.status(500).json({ msg: err.message });
