@@ -191,7 +191,7 @@ export const PostCard: React.FC<PostCardProps> = ({
           )}
           {post.codeSnippet && (
             <div className="relative group mt-3">
-              <pre className="bg-gray-900 text-green-200 rounded p-3 pr-10 overflow-x-auto text-sm">
+              <pre className="bg-gray-900 text-orange-200 rounded p-3 pr-10 overflow-x-auto text-sm">
                 <code>{post.codeSnippet}</code>
               </pre>
               <button

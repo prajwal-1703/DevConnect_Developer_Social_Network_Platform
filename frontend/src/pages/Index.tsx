@@ -210,10 +210,10 @@ export default function Index() {
                     transition={{ delay: 0.5 + (i * 0.1) }}
                     whileHover={{ scale: 1.1, zIndex: 50 }}
                     className={`absolute ${node.pos} px-4 py-2 rounded-xl border text-[9px] font-black tracking-wider uppercase flex items-center space-x-3 cursor-pointer transition-all
-                      ${node.active ? 'border-primary bg-primary/20 text-primary shadow-[0_0_20px_rgba(0,255,238,0.3)]' : 'border-white/10 bg-background/80 text-foreground/80'}
-                      ${node.master ? 'border-primary/50 ring-4 ring-primary/10 shadow-[0_0_30px_rgba(0,255,238,0.2)]' : ''}`}
+                      ${node.active ? 'border-primary bg-primary/20 text-primary shadow-[0_0_20px_rgba(255,100,0,0.3)]' : 'border-white/10 bg-background/80 text-foreground/80'}
+                      ${node.master ? 'border-primary/50 ring-4 ring-primary/10 shadow-[0_0_30px_rgba(255,100,0,0.2)]' : ''}`}
                   >
-                    <div className={`w-2 h-2 rounded-full ${node.active || node.master ? 'bg-primary shadow-[0_0_10px_rgba(0,255,238,1)]' : 'bg-muted-foreground/30'}`} />
+                    <div className={`w-2 h-2 rounded-full ${node.active || node.master ? 'bg-primary shadow-[0_0_10px_rgba(255,100,0,1)]' : 'bg-muted-foreground/30'}`} />
                     <span>{node.label}</span>
                   </motion.div>
                 ))}
@@ -342,7 +342,7 @@ export default function Index() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
             { title: 'Project Cards', icon: Folder, color: 'bg-blue-500' },
-            { title: 'Real-time Chat', icon: MessageCircle, color: 'bg-green-500' },
+            { title: 'Real-time Chat', icon: MessageCircle, color: 'bg-orange-500' },
             { title: 'Social Feed', icon: Rss, color: 'bg-purple-500' },
             { title: 'User Profiles', icon: User, color: 'bg-rose-500' },
           ].map((comp, idx) => (

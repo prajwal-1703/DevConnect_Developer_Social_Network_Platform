@@ -34,16 +34,16 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 12%;
     
-    --primary: 170 100% 35%; /* Vibrat Teal Base */
+    --primary: 0 0% 25%; /* Primary Gray in Light Theme */
     --primary-foreground: 0 0% 96%;
     
-    --secondary: 170 100% 45%; /* Brighter Teal */
+    --secondary: 25 100% 50%; /* Vibrant Orange */
     --secondary-foreground: 0 0% 4%;
     
     --muted: 0 0% 88%;
-    --muted-foreground: 170 100% 25%;
+    --muted-foreground: 0 0% 40%;
     
-    --accent: 170 100% 45%;
+    --accent: 25 100% 50%;
     --accent-foreground: 0 0% 4%;
     
     --success: 142 76% 36%;
@@ -57,14 +57,14 @@
     
     --border: 0 0% 85%;
     --input: 0 0% 85%;
-    --ring: 170 100% 40%;
+    --ring: 25 100% 50%;
     
     --radius: 0.75rem;
     
-    /* Custom gradients - Neon Retro Feel */
-    --gradient-primary: linear-gradient(135deg, hsl(170 100% 35%), hsl(170 100% 60%));
-    --gradient-hero: linear-gradient(135deg, hsl(0 0% 96%), hsl(170 100% 95%));
-    --gradient-accent: linear-gradient(135deg, hsl(170 100% 60%), hsl(170 100% 35%));
+    /* Custom gradients - Orange Retro Feel */
+    --gradient-primary: linear-gradient(135deg, hsl(0 0% 20%), hsl(0 0% 45%));
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 96%), hsl(25 100% 95%));
+    --gradient-accent: linear-gradient(135deg, hsl(25 100% 60%), hsl(25 100% 40%));
     
     /* Animation easing */
     --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -90,16 +90,16 @@
     --popover: 0 0% 8%;
     --popover-foreground: 0 0% 96%;
     
-    --primary: 170 100% 50%; /* Pure Neon Teal/Cyan */
+    --primary: 25 100% 50%; /* Pure Neon Orange */
     --primary-foreground: 0 0% 4%;
     
-    --secondary: 170 30% 15%; /* Darker muted teal for panels */
-    --secondary-foreground: 170 100% 50%;
+    --secondary: 25 30% 15%; /* Darker muted orange for panels */
+    --secondary-foreground: 25 100% 50%;
     
     --muted: 0 0% 12%;
     --muted-foreground: 0 0% 60%;
     
-    --accent: 170 100% 50%;
+    --accent: 25 100% 50%;
     --accent-foreground: 0 0% 4%;
     
     --success: 142 76% 36%;
@@ -113,13 +113,13 @@
     
     --border: 0 0% 15%;
     --input: 0 0% 15%;
-    --ring: 170 100% 50%;
+    --ring: 25 100% 50%;
     
     /* Neon Dark gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(170 100% 50%), hsl(180 100% 40%));
-    --gradient-hero: radial-gradient(circle at top right, hsl(170 100% 50% / 0.15), transparent 40%), 
-                    radial-gradient(circle at bottom left, hsl(170 100% 30% / 0.1), transparent 40%);
-    --gradient-accent: linear-gradient(135deg, hsl(180 100% 40%), hsl(170 100% 50%));
+    --gradient-primary: linear-gradient(135deg, hsl(25 100% 50%), hsl(35 100% 40%));
+    --gradient-hero: radial-gradient(circle at top right, hsl(25 100% 50% / 0.15), transparent 40%), 
+                    radial-gradient(circle at bottom left, hsl(25 100% 30% / 0.1), transparent 40%);
+    --gradient-accent: linear-gradient(135deg, hsl(35 100% 40%), hsl(25 100% 50%));
     
     /* Dark shadows - Plain neutral shadows (no glow) */
     --shadow-soft: 0 1px 3px 0 rgb(0 0 0 / 0.4);

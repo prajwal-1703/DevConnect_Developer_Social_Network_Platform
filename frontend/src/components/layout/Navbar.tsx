@@ -122,7 +122,7 @@ export const Navbar = () => {
               </DropdownMenu>
             ) : (
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button asChild size="sm" className="bg-primary text-background font-bold text-[10px] uppercase tracking-widest px-6 py-5 rounded-md shadow-[0_0_20px_rgba(0,255,238,0.2)] hover:shadow-[0_0_30px_rgba(0,255,238,0.4)] transition-all">
+                <Button asChild size="sm" className="bg-primary text-background font-bold text-[10px] uppercase tracking-widest px-6 py-5 rounded-md shadow-[0_0_20px_rgba(255,100,0,0.2)] hover:shadow-[0_0_30px_rgba(255,100,0,0.4)] transition-all">
                   <Link to="/register">Get Started</Link>
                 </Button>
               </motion.div>
